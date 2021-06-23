@@ -29,7 +29,14 @@
                                 <th scope="row"><?= $i; ?></th>
                                 <td><?= $reward_nama; ?></td>
                                 <td><?= $reward_foto; ?></td>
-                                <td><?= $reward_type; ?></td>
+                                <?php if ($reward_type == 1) {
+                                    echo '<td>Pegawai Terbaik</td>';
+                                } elseif ($reward_type == 2) {
+                                    echo '<td>Satpam Terbaik</td>';
+                                } elseif ($reward_type == 3) {
+                                    echo '<td>Petugas Kebersihan Terbaik</td>';
+                                }
+                                ?>
                             </tr>
                             <?php $i++; ?>
                         <?php endforeach; ?>
@@ -46,7 +53,7 @@
 <!-- Modal add -->
 <div class="modal fade" id="newReward" tabindex="-1" role="dialog" aria-labelledby="newRewardLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
-        <form action="<?= base_url(''); ?>" method="post">
+        <form action="<?= base_url('reward/simpan'); ?>" method="post">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="newRewardLabel">New Reward</h5>
@@ -64,8 +71,8 @@
                                         <option disabled selected>Pilih</option>
                                         <?php
                                         foreach ($pegawai as $p) :
-                                            $menu_id = $p['ms_nama'];
-                                            $menu_nama = $p['ms_nip'];
+                                            $menu_nama = $p['ms_nama'];
+                                            $menu_id = $p['ms_nip'];
                                         ?>
                                             <option value="<?= $menu_id; ?>"><?= $menu_id . ' - ' . $menu_nama; ?></option>
                                         <?php endforeach; ?>

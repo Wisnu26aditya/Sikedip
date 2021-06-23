@@ -12,7 +12,8 @@ class M_Reward extends CI_Model
                             a.show_item,
                             b.ms_nama
                             FROM list_reward a
-                    JOIN ms_kar b ON a.reward_nik = b.ms_nip";
+                    JOIN ms_kar b ON a.reward_nik = b.ms_nip
+                    where a.show_item='1'";
         return $this->db->query($query)->result_array();
     }
     public function getPegawai()
@@ -27,5 +28,10 @@ class M_Reward extends CI_Model
                             FROM ms_kar a
                     WHERE a.show_item = '1'";
         return $this->db->query($query)->result_array();
+    }
+
+    public function simpan_reward($data)
+    {
+        $this->db->insert('list_reward', $data);
     }
 }
