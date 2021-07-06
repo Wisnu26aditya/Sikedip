@@ -21,7 +21,7 @@ class MpdfController extends CI_Controller
         $namavicon = $_GET['name'];
         // $datapeserta = $this->db->get_where('data_peserta', ['kunci_id' => '3']);
         // $pdf = new FPDF('L', 'mm', 'A4'); //L = lanscape P= potrait
-        $pdf = new FPDF('L','mm', array(216, 330)); //L = lanscape P= potrait Folio
+        $pdf = new FPDF('L', 'mm', array(216, 330)); //L = lanscape P= potrait Folio
         // membuat halaman baru
         $pdf->AddPage();
         // setting jenis font yang akan digunakan
@@ -42,7 +42,7 @@ class MpdfController extends CI_Controller
         $pdf->Cell(30, 8, 'Npwp', 1, 0, 'C');
         $pdf->Cell(30, 8, 'No. Rek', 1, 0, 'C');
         $pdf->Cell(20, 8, 'Bank', 1, 0, 'C');
-        $pdf->Cell(20, 8, 'Golongan', 1, 0, 'C');
+        // $pdf->Cell(20, 8, 'Golongan', 1, 0, 'C');
         $pdf->Cell(35, 8, 'No. Hp', 1, 0, 'C');
         $pdf->Cell(30, 8, 'ttd', 1, 1, 'C');
         $pdf->SetFont('Arial', '', 8);
@@ -53,7 +53,7 @@ class MpdfController extends CI_Controller
         foreach ($data as $row) {
             $ttd = $row->ttd;
             $gabungan = $asalurl . $ttd;
-            $gambar = $pdf->Image($gabungan, $pdf->GetX() + 290, $pdf->GetY(), 6, 8);
+            $gambar = $pdf->Image($gabungan, $pdf->GetX() + 275, $pdf->GetY(), 6, 8);
             // $pdf->Ln();
             $pdf->Cell(10, 8, $i++, 1, 0);
             $pdf->Cell(45, 8, $row->data_nama, 1, 0);
@@ -62,7 +62,7 @@ class MpdfController extends CI_Controller
             $pdf->Cell(30, 8, $row->data_npwp, 1, 0);
             $pdf->Cell(30, 8, $row->data_norek, 1, 0);
             $pdf->Cell(20, 8, $row->data_namabank, 1, 0);
-            $pdf->Cell(20, 8, $row->data_gol, 1, 0);
+            // $pdf->Cell(20, 8, $row->data_gol, 1, 0);
             $pdf->Cell(35, 8, $row->data_tlp, 1, 0);
             // $pdf->Image($gabungan, $pdf->GetX() + 165, $pdf->GetY(), 5, 10);
             $pdf->Cell(30, 8, $gambar,  1, 1, 'C');
